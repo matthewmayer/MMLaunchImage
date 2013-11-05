@@ -20,11 +20,11 @@ Pod::Spec.new do |s|
                    * Useful for displaying after launch, to create a fade into your app or waiting for an interstitial
                    DESC
 
-  s.homepage     = "https://github.com/matthewmayer/UIImage+MMLaunchImage"
+  s.homepage     = "https://github.com/matthewmayer/MMLaunchImage"
   s.license      = 'MIT'
   s.author       = 'Matt Mayer'
   s.platform     = :ios, '5.0'
-  s.source       = { :git => "https://github.com/matthewmayer/UIImage+MMLaunchImage.git", :tag => "1.0.0" }
+  s.source       = { :git => "https://github.com/matthewmayer/MMLaunchImage.git", :tag => "1.0.0" }
   s.source_files  = '*.{h,m}'
   s.requires_arc = true
 
