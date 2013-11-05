@@ -3,9 +3,9 @@
 //
 //  Matt Mayer
 
-#import "UIImage+LaunchImage.h"
+#import "UIImage+MMLaunchImage.h"
 
-@implementation UIImage (LaunchImage)
+@implementation UIImage (MMLaunchImage)
 +(UIImage *)launchImage {
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     BOOL phone =[UIDevice currentDevice].userInterfaceIdiom ==UIUserInterfaceIdiomPhone;

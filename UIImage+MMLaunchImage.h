@@ -1,5 +1,5 @@
 //
-//  UIImage+LaunchImage.h
+//  UIImage+MMLaunchImage.h
 //
 //  Matt Mayer
 
