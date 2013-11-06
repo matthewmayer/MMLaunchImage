@@ -22,7 +22,7 @@
         //filter down the array to just the matching elements
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"UILaunchImageMinimumOSVersion <= %@ AND UILaunchImageOrientation = %@ AND UILaunchImageSize = %@",os_version,orientationString,NSStringFromCGSize([UIApplication sharedApplication].keyWindow.bounds.size) ];
         NSArray *suitableLaunchImages = [ios7LaunchImages filteredArrayUsingPredicate:predicate];
-        NSString *imageName = [[suitableLaunchImages lastObject] objectForKey:@"UILaunchImageName"];
+        NSString *imageName = [[suitableLaunchImages firstObject] objectForKey:@"UILaunchImageName"];
         UIImage *image = [UIImage imageNamed:imageName];
         if (image!=nil) {
             return image;
@@ -50,8 +50,13 @@
                 return image;
             }
             
-            return [UIImage imageNamed:[NSString stringWithFormat:(landscape?@"%@-Landscape":@"%@-Portrait"),baseName]];
+            image = [UIImage imageNamed:[NSString stringWithFormat:(landscape?@"%@-Landscape":@"%@-Portrait"),baseName]];
             
+            if (image!=nil) {
+                return image;
+            }
+            
+            return [UIImage imageNamed:[NSString stringWithFormat:(landscape?@"%@-Landscape~ipad":@"%@-Portrait~ipad"),baseName]];
         }
     }
     return nil;
