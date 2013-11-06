@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   s.license      = 'MIT'
   s.author       = 'Matt Mayer'
   s.platform     = :ios, '5.0'
-  s.source       = { :git => "https://github.com/matthewmayer/MMLaunchImage.git", :tag => "1.0.3" }
+  s.source       = { :git => "https://github.com/pilot34/MMLaunchImage.git" }
   s.source_files  = '*.{h,m}'
   s.requires_arc = true
 
