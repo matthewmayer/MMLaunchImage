@@ -22,7 +22,7 @@
         //filter down the array to just the matching elements
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"UILaunchImageMinimumOSVersion <= %@ AND UILaunchImageOrientation = %@ AND UILaunchImageSize = %@",os_version,orientationString,NSStringFromCGSize([UIApplication sharedApplication].keyWindow.bounds.size) ];
         NSArray *suitableLaunchImages = [ios7LaunchImages filteredArrayUsingPredicate:predicate];
-        NSString *imageName = [[suitableLaunchImages firstObject] objectForKey:@"UILaunchImageName"];
+        NSString *imageName = [[suitableLaunchImages lastObject] objectForKey:@"UILaunchImageName"];
         UIImage *image = [UIImage imageNamed:imageName];
         if (image!=nil) {
             return image;
