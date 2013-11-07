@@ -31,29 +31,33 @@
 
     //check the pre-ios7 key
     NSString* baseName = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"UILaunchImageFile"];
-    if (baseName!=nil) {
+    if (baseName==nil)
+        baseName = @"Default";
+    
+    if(phone) {
+        BOOL fourinch = ([UIScreen mainScreen].bounds.size.height == 568.0);
+        return fourinch ? [UIImage imageNamed:[NSString stringWithFormat:@"%@-568h",baseName]] : [UIImage imageNamed:baseName];
         
-        if(phone) {
-            BOOL fourinch = ([UIScreen mainScreen].bounds.size.height == 568.0);
-            return fourinch ? [UIImage imageNamed:[NSString stringWithFormat:@"%@-568h",baseName]] : [UIImage imageNamed:baseName];
-            
-        } else {
-            UIImage *image = nil;
-            if(orientation == UIInterfaceOrientationPortraitUpsideDown) {
-                image =[UIImage imageNamed:[NSString stringWithFormat:@"%@-PortraitUpsideDown",baseName]];
-            } else if (orientation == UIInterfaceOrientationLandscapeLeft) {
-                image = [UIImage imageNamed:[NSString stringWithFormat:@"%@-LandscapeLeft",baseName]];
-            } else if( orientation == UIInterfaceOrientationLandscapeRight) {
-                image = [UIImage imageNamed:[NSString stringWithFormat:@"%@-LandscapeRight",baseName]];
-            }
-            if (image!=nil) {
-                return image;
-            }
-            
-            return [UIImage imageNamed:[NSString stringWithFormat:(landscape?@"%@-Landscape":@"%@-Portrait"),baseName]];
-            
+    } else {
+        UIImage *image = nil;
+        if(orientation == UIInterfaceOrientationPortraitUpsideDown) {
+            image =[UIImage imageNamed:[NSString stringWithFormat:@"%@-PortraitUpsideDown",baseName]];
+        } else if (orientation == UIInterfaceOrientationLandscapeLeft) {
+            image = [UIImage imageNamed:[NSString stringWithFormat:@"%@-LandscapeLeft",baseName]];
+        } else if( orientation == UIInterfaceOrientationLandscapeRight) {
+            image = [UIImage imageNamed:[NSString stringWithFormat:@"%@-LandscapeRight",baseName]];
         }
+        if (image!=nil) {
+            return image;
+        }
+        
+        image = [UIImage imageNamed:[NSString stringWithFormat:(landscape?@"%@-Landscape":@"%@-Portrait"),baseName]];
+        
+        if (image!=nil) {
+            return image;
+        }
+        
+        return [UIImage imageNamed:[NSString stringWithFormat:(landscape?@"%@-Landscape~ipad":@"%@-Portrait~ipad"),baseName]];
     }
-    return nil;
 }
 @end
